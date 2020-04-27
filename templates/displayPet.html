@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block title %}Edit Pet{% endblock %}
+
+{% block Content %}
+<section class="pet m-3">
+    <div class="row">
+        <div class="col-3">
+            <h1>{{pet.name}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <h4>{{pet.species}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <img src="{{pet.photo_url}}" alt="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <h4>{{pet.age}}</h1>
+        </div>
+    </div>
+        <div class="col-lg-6">
+            <form action="/{{pet.id}}" method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.photo_url.label}}
+                {{ form.photo_url(class_="form-control") }}
+                {% for err in form.photo_url.errors %}
+                {{err}}
+                {% endfor %}
+                {{ form.notes.label}}
+                {{ form.notes(class_="form-control") }}
+                {{ form.available.label}}
+                {{ form.available(class_="form-control") }}
+                {% for err in form.available.errors %}
+                {{err}}
+                {% endfor %}
+                <button class="btn btn-info">Save</button>
+                
+            </form>
+            <a href="/"><button class="btn btn-secondary">Cancel</button></a>
+        </div>
+
+</section>
+
+
+{% endblock %}
